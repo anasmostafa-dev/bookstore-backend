@@ -47,7 +47,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://bookstore-frontend-flame.vercel.app",
+      "https://book-store-ebon-ten-27.vercel.app",
     ],
     credentials: true,
   }),
