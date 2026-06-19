@@ -16,17 +16,23 @@ app.use((req, res, next) => {
   const allowedOrigins = [
     "http://localhost:5173",
     "http://localhost:5174",
-    "https://book-store-ebon-ten-27.vercel.app"
+    "https://book-store-ebon-ten-27.vercel.app",
   ];
   const origin = req.headers.origin;
-  
+
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
-  
+
   res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, x-auth-token, Accept");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, x-auth-token, Accept",
+  );
 
   // لو الطلب OPTIONS (Preflight) نرد بـ 200 فوراً ونقفل الـ Request
   if (req.method === "OPTIONS") {
@@ -41,16 +47,16 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://book-store-ebon-ten-27.vercel.app",
+      "https://bookstore-frontend-flame.vercel.app",
     ],
     credentials: true,
-  })
+  }),
 );
 
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" },
-  })
+  }),
 );
 
 app.use(express.json());
@@ -82,11 +88,11 @@ app.use("/orders", orderRouter);
 
 // 6. Server Start
 // مهم لـ Vercel: لا يفضل استخدام app.listen مباشرة في الـ Production
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 5000;
-    app.listen(PORT, () => {
-        console.log(`Server Running On http://localhost:${PORT}`);
-    });
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server Running On http://localhost:${PORT}`);
+  });
 }
 
 module.exports = app;
