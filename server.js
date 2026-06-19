@@ -17,6 +17,7 @@ app.use((req, res, next) => {
     "http://localhost:5173",
     "http://localhost:5174",
     "https://book-store-ebon-ten-27.vercel.app",
+    "https://bookstore-frontend-flame.vercel.app",
   ];
   const origin = req.headers.origin;
 
@@ -48,6 +49,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "https://book-store-ebon-ten-27.vercel.app",
+      "https://bookstore-frontend-flame.vercel.app",
     ],
     credentials: true,
   }),
